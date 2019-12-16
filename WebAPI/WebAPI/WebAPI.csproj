@@ -195,8 +195,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MyContext.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UsersController.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

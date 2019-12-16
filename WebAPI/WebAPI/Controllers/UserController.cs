@@ -12,37 +12,47 @@ namespace WebAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
-        private PersonRepository repository = new PersonRepository();
+        private UserRepository repository = new UserRepository();
 
         // GET: api/Users
-        public IEnumerable<User> Get()
+        [Route("api/Users")]
+        [HttpGet]
+        public IEnumerable<Users> Get()
         {
             return this.repository.FindAll();
         }
 
         // GET: api/Users/5
-        public User Get(int id)
+        [Route("api/Users/{id}")]
+        [HttpGet]
+        public Users Get(int id)
         {
             return this.repository.FindById(id);
         }
 
         // POST: api/Users
-        public void Post([FromBody]User value)
+        [Route("api/Users")]
+        [HttpPost]
+        public void Post([FromBody]Users value)
         {
             this.repository.Create(value);
         }
 
         // PUT: api/Users/5
-        public void Put(int id, [FromBody]User value)
+        [Route("api/Users/{id}")]
+        [HttpPost]
+        public void Put(int id, [FromBody]Users value)
         {
             value.ID = id;
-            this.repository.Update(value);
+            this.repository.Update(value,id);
         }
 
         // DELETE: api/Users/5
+        [Route("api/Users/{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
-            User user = this.repository.FindById(id);
+            Users user = this.repository.FindById(id);
             this.repository.Delete(user);
         }
     }

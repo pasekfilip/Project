@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebAPI.Models
 {
-    public class User
+    public class Users
     {
         public int ID { get; set; }
         public string UserName { get; set; }
