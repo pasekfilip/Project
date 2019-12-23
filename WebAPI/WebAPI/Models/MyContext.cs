@@ -13,7 +13,10 @@ namespace WebAPI.Models
     {
         public DbSet<User> User { get; set; }
         public DbSet<Friends> Friends { get; set; }
-
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Chat_Member> Chat_Members { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<File> Files { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

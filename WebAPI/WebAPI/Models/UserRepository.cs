@@ -28,11 +28,11 @@ namespace WebAPI.Models
 
         public void Update(User user,int id)
         {
-            //User current = this.FindById(id);
-            //current.UserName = user.UserName;
-            //current.Email = user.Email;
-            //current.Password = user.Password;
-            //current.Picture = user.Picture;
+            //Chat current = this.FindById(id);
+            //current.ChatName = Chat.ChatName;
+            //current.Email = Chat.Email;
+            //current.Password = Chat.Password;
+            //current.Picture = Chat.Picture;
 
 
             //this.context.SaveChanges();
@@ -42,7 +42,7 @@ namespace WebAPI.Models
                 return;
             context.Entry(entity).CurrentValues.SetValues(user);
             context.SaveChanges();
-            //this.context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            //this.context.Entry(Chat).State = System.Data.Entity.EntityState.Modified;
             //this.context.SaveChanges();
         }
 
