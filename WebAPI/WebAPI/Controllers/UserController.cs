@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using WebAPI.Models;
-
+using WebAPI.Models.Tables;
 namespace WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
         // GET: api/Users
         [Route("api/Users")]
         [HttpGet]
-        public IEnumerable<Users> Get()
+        public List<User> Get()
         {
             return this.repository.FindAll();
         }
@@ -25,34 +25,34 @@ namespace WebAPI.Controllers
         // GET: api/Users/5
         [Route("api/Users/{id}")]
         [HttpGet]
-        public Users Get(int id)
+        public User Get(int id)
         {
             return this.repository.FindById(id);
         }
 
-        // POST: api/Users
+        // POST: api/User
         [Route("api/Users")]
         [HttpPost]
-        public void Post([FromBody]Users value)
+        public void Post([FromBody]User value)
         {
             this.repository.Create(value);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/User/5
         [Route("api/Users/{id}")]
         [HttpPost]
-        public void Put(int id, [FromBody]Users value)
+        public void Put(int id, [FromBody]User value)
         {
             value.ID = id;
             this.repository.Update(value,id);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/User/5
         [Route("api/Users/{id}")]
         [HttpDelete]
         public void Delete(int id)
         {
-            Users user = this.repository.FindById(id);
+            User user = this.repository.FindById(id);
             this.repository.Delete(user);
         }
     }

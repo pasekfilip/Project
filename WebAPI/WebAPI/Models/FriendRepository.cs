@@ -1,32 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using WebAPI.Models.Tables;
 namespace WebAPI.Models
 {
-    public class UserRepository
+    public class FriendRepository
     {
         private MyContext context = new MyContext();
 
-        public List<User> FindAll()
+        public List<Friends> FindAll()
         {
-            return this.context.User.ToList();
+            return this.context.Friends.ToList();
         }
 
-        public User FindById(int id)
+        public Friends FindById(int id)
         {
-            //return this.context.User.Where(x => x.Id == id).FirstOrDefault();
-            return this.context.User.Find(id);
+            return this.context.Friends.Find(id);
         }
 
-        public void Create(User user)
+        public void Create(Friends friend)
         {
-            this.context.User.Add(user);
+            this.context.Friends.Add(friend);
             this.context.SaveChanges();
         }
 
-        public void Update(User user,int id)
+        public void Update(Friends friend, int id)
         {
             //User current = this.FindById(id);
             //current.UserName = user.UserName;
@@ -37,18 +38,18 @@ namespace WebAPI.Models
 
             //this.context.SaveChanges();
 
-            User entity = this.FindById(id);
+            Friends entity = this.FindById(id);
             if (entity == null)
                 return;
-            context.Entry(entity).CurrentValues.SetValues(user);
+            context.Entry(entity).CurrentValues.SetValues(friend);
             context.SaveChanges();
             //this.context.Entry(user).State = System.Data.Entity.EntityState.Modified;
             //this.context.SaveChanges();
         }
 
-        public void Delete(User user)
+        public void Delete(Friends friend)
         {
-            this.context.User.Remove(user);
+            this.context.Friends.Remove(friend);
             this.context.SaveChanges();
         }
     }
