@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <h1>Sign Up</h1>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>UserName</label>
+            <input [class.is-invalid]="userName.invalid && userName.touched" formControlName="userName" type="text"
+                class="form-control">
+            <div *ngIf="userName.invalid &&(userName.dirty || userName.touched)">
+                <div *ngIf="userName.errors?.required" class="text-danger">UserName is required</div>
+                <div *ngIf="userName.errors?.minlength" class="text-danger">UserName must be at least 3 characters</div>
+                <div *ngIf="userName.errors['UniqueUserName']" class="text-danger">UserName already exists</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input formControlName="email" type="email" class="form-control"
+                [class.is-invalid]="email.invalid && email.touched">
+            <div *ngIf="email.invalid &&(email.dirty || email.touched)">
+                <div *ngIf="email.errors?.required" class="text-danger">Email is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input formControlName="password" type="password" class="form-control"
+                [class.is-invalid]="password.invalid && password.touched">
+            <div *ngIf="password.invalid &&(password.dirty || password.touched)">
+                <div *ngIf="password.errors?.required" class="text-danger">Password is required</div>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]='!registrationForm.valid' class="btn btn-primary">Register</button>
+
+    </form>
+    <a routerLink="/Login" class="nav-link active">Login</a>
+    {{registrationForm.value | json}}
+</div>

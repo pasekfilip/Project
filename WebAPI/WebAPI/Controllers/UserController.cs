@@ -21,13 +21,19 @@ namespace WebAPI.Controllers
         {
             return this.repository.FindAll();
         }
+        //[Route("api/Users/{id}")]
+        //[HttpGet]
+        //public bool Post(string id)
+        //{
+        //    return this.repository.CheckIfUserExists(id);
+        //}
 
-        // GET: api/Users/5
+        //GET: api/Users/Filip
         [Route("api/Users/{id}")]
         [HttpGet]
-        public User Get(int id)
+        public User Get(string id)
         {
-            return this.repository.FindById(id);
+            return this.repository.FindByUserName(id);
         }
 
         // POST: api/User

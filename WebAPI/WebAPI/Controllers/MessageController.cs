@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebAPI.Models;
 using WebAPI.Models.Tables;
 
 namespace WebAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MessageController : ApiController
     {
         private MessageRepository repository = new MessageRepository();
@@ -28,9 +30,9 @@ namespace WebAPI.Controllers
             return this.repository.FindById(id);
         }
 
-        [Route("api/Messages")]
+        [Route("api/Message")]
         [HttpPost]
-        public void Post([FromBody]Message value)
+        public void Post(Message value)
         {
             this.repository.Create(value);
         }

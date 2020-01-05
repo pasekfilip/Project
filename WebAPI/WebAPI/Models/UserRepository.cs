@@ -13,7 +13,23 @@ namespace WebAPI.Models
         {
             return this.context.User.ToList();
         }
-
+        public bool CheckIfUserExists(string uName)
+        {
+            bool result = true;
+            List<User> user = this.FindAll();
+            for (int i = 0; i < user.Count; i++)
+            {
+                if (user[i].UserName == uName)
+                {
+                    return result;
+                }
+            }
+            return false;
+        }
+        public User FindByUserName(string uName)
+        {
+            return this.context.User.Where(x => x.UserName == uName).FirstOrDefault();
+        }
         public User FindById(int id)
         {
             //return this.context.User.Where(x => x.Id == id).FirstOrDefault();

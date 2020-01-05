@@ -16,9 +16,9 @@ namespace WebAPI.Models.Tables
         public int ID_Friend { get; set; }
 
         [InverseProperty("Users")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
         [InverseProperty("Friends")]
-        public User Friend { get; set; }
+        public virtual User Friend { get; set; }
 
     }
 }

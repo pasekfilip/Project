@@ -1,0 +1,67 @@
+<!-- <div class="container-fluid">
+    <h1>Login</h1> 
+     <form ng-app="" ng-controller="validateCtrl" name="loginForm"  ng-form [formGroup]="loginForm">
+        <div class="form-group">
+            <label>UserName</label>
+            <input [class.is-invalid]= "userName.invalid && userName.touched" formControlName="userName" type="text" class="form-control" ngModel UniqueUserName >
+
+            <div *ngIf="userName.errors['UniqueUserName']">UserName confrim no match </div>
+
+            
+
+            <div *ngIf="userName.invalid && userName.touched">
+                <small *ngIf="userName.errors?.exists" class="text-danger">{{userName.errors?.exists.value}} dosent exist</small>
+            </div>
+                
+           
+
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input formControlName="password" type="password"  class="form-control" >
+        </div>
+        <button [disabled]= '!loginForm.valid' class="btn btn-primary" type="submit" (click)="onSubmit()">Login in</button>
+    </form> 
+        <a routerLink="/SignUp" class="nav-link active">SignUp</a> 
+       
+</div> -->
+<div class="container-fluid">
+    <h1>Login</h1>
+    <form #loginForm="ngForm">
+        <div class="form-group">
+            <label>UserName</label>
+            <input type="text" class="form-control" name="userName"
+                [class.is-invalid]="userName.invalid && userName.touched" [(ngModel)]= "model.userName" #userName="ngModel" required
+                UniqueUserName>
+            <div class="text-danger" *ngIf="userName.invalid &&(userName.dirty || userName.touched)">
+                <div class="text-danger" *ngIf="userName.errors['required']">UserName is required</div>
+                <div class="text-danger" *ngIf="userName.errors['UniqueUserName']">UserName is not registered</div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" [class.is-invalid]="password.invalid && password.touched" class="form-control"
+                name="password" required [(ngModel)]="model.password" #password="ngModel">
+            <div class="text-danger" *ngIf="password.invalid &&(password.dirty || password.touched)">
+                <div class="text-danger" *ngIf="password.errors['required']">password is required</div>
+                <!--  validace když user zkouší hesla-->
+            </div>
+        </div>
+        <button [routerLink]="['/Home',{data:model.userName}]" type="button"  class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+      
+    </form>
+</div>
+    <a routerLink="/SignUp" class="nav-link m-2">SingUp</a>
+    <br>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Fomr status: {{loginForm.status}}</h5>
+            <h6 class="card-subtitll mb-2 text-muted">Form value</h6>
+            <pre>{{model.userName}}</pre>
+            <pre>{{model.password}}</pre>
+        </div>
+    </div>
+</div>

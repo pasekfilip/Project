@@ -21,8 +21,8 @@ namespace WebAPI.Models.Tables
         public int ID_Chat { get; set; }
         public DateTime Send_Time { get; set; }
         public DateTime Del_Msg_Time { get; set; }
-
-        public User Users { get; set; }
+        [InverseProperty("Messages")]
+        public virtual User Users { get; set; }
         public Chat Chats { get; set; }
     }
 }
