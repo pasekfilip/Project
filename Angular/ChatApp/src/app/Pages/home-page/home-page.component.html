@@ -1,6 +1,6 @@
-
-<app-messages [userName]="modelUserName"></app-messages>
-
+<div *ngFor="let message of messages">
+<app-messages [message]="message"></app-messages>
+</div>
 <form [formGroup]="messageForm" (ngSubmit)="onSend()">
     <input type="text" name="message" formControlName="message">
     <button class="btn btn-primary" type="submit">Send</button>

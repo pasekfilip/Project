@@ -25,9 +25,9 @@ namespace WebAPI.Controllers
 
         [Route("api/Message/{id}")]
         [HttpGet]
-        public Message Get(int id)
+        public List<Message> Get(int id)
         {
-            return this.repository.FindById(id);
+            return this.repository.FindByChatID(id);
         }
 
         [Route("api/Message")]

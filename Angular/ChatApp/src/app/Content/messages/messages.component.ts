@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { message } from 'src/app/Models/message';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-messages',
@@ -7,10 +9,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor() { }
-  @Input() userName: string;
+  constructor(private userService:UserService) { }
+  @Input() message: message;
  
   ngOnInit() {
-    
+      
   }
 }
