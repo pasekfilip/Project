@@ -24,12 +24,12 @@ export class HomePageComponent implements OnInit {
     this.userService.getUserByUserName(this.modelUserName).pipe(
       map(data => this.ID_User = data.ID)
     ).subscribe(data => console.log(this.ID_User));
-    this.messageService.getAllTheMessages()
-    .subscribe(data => this.messages = data);
+    
   }
 
   ngOnInit() {
     this.createForm(); 
+    this.refresh();
   }
   createForm() {
     this.messageForm = this.fb.group(
@@ -48,15 +48,12 @@ export class HomePageComponent implements OnInit {
     this.sendMessage.Del_Msg_Time = currentDate.toISOString().slice(0, 19).replace("T", " ");
 
     this.messageService.sendMessageToDb(this.sendMessage)
-      .subscribe(response => console.log('Success', response),
+      .subscribe(()=> this.refresh(),
         error => console.log('error', error));
-    this.refresh();
+    this.messageForm.reset();
   }
   refresh()
   {
-   this.messageService.getAllTheMessages().pipe(
-     delay(500),
-     map(() => this.messages.slice(this.messages.length -1, 1))
-   ).subscribe(data => this.messages = data);
+   this.messageService.getAllTheMessages().subscribe(data => this.messages = data);
   }
 }

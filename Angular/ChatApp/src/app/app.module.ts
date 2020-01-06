@@ -13,6 +13,7 @@ import { HomePageComponent } from './Pages/home-page/home-page.component';
 import { MessagesComponent } from './Content/messages/messages.component';
 import { NavComponent } from './Content/nav/nav.component';
 import {MessageService} from './Services/message.service';
+import { FriendsPageComponent } from './Pages/friends-page/friends-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MessageService} from './Services/message.service';
     UniqueUserNameValidatorDirective,
     HomePageComponent,
     MessagesComponent,
-    NavComponent
+    NavComponent,
+    FriendsPageComponent
   ],
   imports: [
     BrowserModule,
