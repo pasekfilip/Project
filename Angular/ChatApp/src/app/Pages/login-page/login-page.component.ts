@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/Services/user.service';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/Services/auth.service';
 // import { ifUserExists, loginAsyncValidator } from 'src/app/Validation/login-validation';
 import { loginUser } from '../../Models/loginUser';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -13,12 +13,17 @@ export class LoginPageComponent implements OnInit {
  
   
  
-  constructor(private loginService:UserService,private router:Router) {}
+  constructor(private auth:AuthService,private router:Router,private Cookie:CookieService,) {}
   model: loginUser = new loginUser();
   
-  ngOnInit() {
+  ngOnInit() : void{
     
   }
-  
+  onLogin()
+  {
+    this.auth.loggedIn(this.model.userName).subscribe(res =>{
+      this.Cookie.set('token',res)
+      this.router.navigate(['/Home'])});
+  }
 }
 

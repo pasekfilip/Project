@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { map, publish, delay } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
+import { map } from 'rxjs/operators';
 import { message } from 'src/app/Models/message';
 import { MessageService } from 'src/app/Services/message.service';
 import { UserService } from 'src/app/Services/user.service';
-import { Observable } from 'rxjs';
-
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-home-page',
@@ -19,12 +19,14 @@ export class HomePageComponent implements OnInit {
   ID_User: number;
   sendMessage: message = new message();
   messages: message[];
-  constructor(private router: ActivatedRoute, private userService: UserService, private fb: FormBuilder, private messageService: MessageService) {
-    this.modelUserName = this.router.snapshot.params['data'];
+  constructor(private router: ActivatedRoute, private userService: UserService, private fb: FormBuilder, private messageService: MessageService,private Cookie:CookieService) {
+    const token = this.Cookie.get('token');
+    const decodedToken = jwt_decode(token);
+    this.modelUserName = decodedToken['name'];
+    
     this.userService.getUserByUserName(this.modelUserName).pipe(
       map(data => this.ID_User = data.ID)
     ).subscribe(data => console.log(this.ID_User));
-    
   }
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class HomePageComponent implements OnInit {
       .subscribe(()=> this.refresh(),
         error => console.log('error', error));
     this.messageForm.reset();
+    
   }
   refresh()
   {

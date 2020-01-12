@@ -49,7 +49,7 @@
                 <!--  validace když user zkouší hesla-->
             </div>
         </div>
-        <button [routerLink]="['/Home',{data:model.userName}]" type="button"  class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+        <button  type="button"  (click)="onLogin()" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
       
     </form>
 </div>

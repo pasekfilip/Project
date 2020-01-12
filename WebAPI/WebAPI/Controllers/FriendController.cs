@@ -32,6 +32,12 @@ namespace WebAPI.Controllers
         {
             return this.repository.FindById(id);
         }
+        [Route("api/Friends/UserID/{id}")]
+        [HttpGet]
+        public List<Friends> GetFrindsByUserID(int id)
+        {
+            return this.repository.FindByUserId(id);
+        }
 
         // POST: api/Friends
         [Route("api/Friends")]

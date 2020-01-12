@@ -16,11 +16,14 @@ namespace WebAPI.Models
             return this.context.Friends.ToList();
         }
 
+        public List<Friends> FindByUserId(int id)
+        {
+            return this.context.Friends.Where(x => x.ID_User == id).ToList();
+        }
         public Friends FindById(int id)
         {
             return this.context.Friends.Find(id);
         }
-
         public void Create(Friends friend)
         {
             this.context.Friends.Add(friend);

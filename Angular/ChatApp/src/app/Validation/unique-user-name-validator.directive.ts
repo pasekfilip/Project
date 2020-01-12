@@ -22,7 +22,6 @@ export function UniqueUserNameValidator(userService: UserService): AsyncValidato
 @Directive({
   selector: '[UniqueUserName]',
   providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: UniqueUserNameValidatorDirective, multi: true }]
-
 })
 export class UniqueUserNameValidatorDirective implements AsyncValidator {
 

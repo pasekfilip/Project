@@ -1,5 +1,5 @@
 <div class="container-fluid mb-4">
-<app-nav></app-nav>
+<app-nav [ID_User]="ID_User"></app-nav>
 <div *ngFor="let message of messages">
     <app-messages [message]="message"></app-messages>
 </div>

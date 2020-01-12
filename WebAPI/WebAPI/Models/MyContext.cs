@@ -17,6 +17,7 @@ namespace WebAPI.Models
         public DbSet<Chat_Member> Chat_Members { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<Token> Tokens { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

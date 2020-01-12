@@ -1,6 +1,8 @@
 <div class="container-fluid">
 <app-nav></app-nav>
 <ul class="list-group">
-    <li class="list-group-item active">Cras justo odio</li>
+    <div *ngFor="let friend of Friends"> 
+    <li class="list-group-item ">{{friend.ID_Friend}}</li>
+    </div>
 </ul>
 </div>
