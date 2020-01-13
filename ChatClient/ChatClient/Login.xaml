@@ -9,7 +9,7 @@
       Title="Login">
 
     <Grid>
-        <Canvas Background="CornflowerBlue" Height="599" VerticalAlignment="Top" MaxWidth="1000" MaxHeight="600" MinWidth="1000" MinHeight="600" Margin="0">
+        <Canvas Background="CornflowerBlue" Height="599" VerticalAlignment="Top" MaxWidth="1000" MaxHeight="600" MinWidth="1000" MinHeight="600" Margin="-97,-37,-103,-113">
             <Label x:Name="label_login" Canvas.Left="450" Canvas.Top="158" FontSize="36" FontWeight="Bold">
                 Login
             </Label>
@@ -19,11 +19,24 @@
             <Label Canvas.Left="335" Canvas.Top="260">
                 password
             </Label>
-            <TextBox x:Name="mail" Height="30" Width="200"  TextChanged="mail_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="400" Canvas.Top="221" SpellCheck.IsEnabled="True"/>
-            <PasswordBox x:Name="passwrd" Height="30" Width="200" Canvas.Left="400" Canvas.Top="256" HorizontalAlignment="Center" VerticalAlignment="Center" ></PasswordBox>
-            <Button x:Name="LoginBTN" Height="25" Width="75" Background="white" Canvas.Left="400" Canvas.Top="291" IsCancel="True" Click="Login_Click">
+            <TextBox x:Name="username_txtbx" Height="30" Width="200"  TextChanged="mail_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="400" Canvas.Top="221" SpellCheck.IsEnabled="True"/>
+            <PasswordBox x:Name="passwrd_txtbx" Height="30" Width="200" Canvas.Left="400" Canvas.Top="256" HorizontalAlignment="Center" VerticalAlignment="Center" ></PasswordBox>
+            <PasswordBox x:Name="passwrd_check" Height="30" Width="200" Canvas.Left="400" Canvas.Top="291" Visibility="Hidden"></PasswordBox>
+            <TextBox x:Name="mail" Height="30" Width="200" Canvas.Left="400" Canvas.Top="326" Visibility="Collapsed"></TextBox>
+            <Button x:Name="LoginBTN" Height="25" Width="200" Canvas.Left="400" Canvas.Top="291" IsCancel="True" Click="Login_Click">
                 submit
             </Button>
+            <Label x:Name="label_signup" Canvas.Left="333" Canvas.Top="321">
+                nemáte účet? zaregistrujte se ->
+            </Label>
+            <Button x:Name="signupBTN" Height="25" Width="86" Canvas.Left="514" Canvas.Top="321" Click="signupBTN_Click">
+                sign up
+            </Button>
+            <Label x:Name="password_check_label" Canvas.Left="335" Canvas.Top="295" Content="password" Visibility="Hidden"/>
+            <Label x:Name="mail_label" Canvas.Left="356" Canvas.Top="330" Visibility="Hidden">
+                email
+            </Label>
+            <Button x:Name="signupBTN_send" Height="25" Width="200" Canvas.Left="400" Canvas.Top="361" IsCancel="True" Content="submit" Visibility="Hidden" Click="signupBTN_send_Click"/>
         </Canvas>
     </Grid>
 </Page>
