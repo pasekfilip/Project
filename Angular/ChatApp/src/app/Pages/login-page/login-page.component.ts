@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   }
   onLogin()
   {
-    this.auth.loggedIn(this.model.userName).subscribe(res =>{
+    this.auth.loggedUser(this.model.userName).subscribe(res =>{
       this.Cookie.set('token',res)
       this.router.navigate(['/Home'])});
   }

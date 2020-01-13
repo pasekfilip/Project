@@ -57,9 +57,9 @@ namespace WebAPI.Models
         {
             return new TokenValidationParameters()
             {
-                ValidateLifetime = true, // Because there is no expiration in the generated token
-                ValidateAudience = true, // Because there is no audiance in the generated token
-                ValidateIssuer = true,   // Because there is no issuer in the generated token
+                ValidateLifetime = true, // Because there is expiration in the generated token
+                ValidateAudience = true, // Because there is audiance in the generated token
+                ValidateIssuer = true,   // Because there is issuer in the generated token
                 ValidIssuer = "http://localhost:4200/",
                 ValidAudience = "http://localhost:4200/",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.key)) // The same key as the one that generate the token

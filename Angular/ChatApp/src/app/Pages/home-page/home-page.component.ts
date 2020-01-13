@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { message } from 'src/app/Models/message';
 import { MessageService } from 'src/app/Services/message.service';
 import { UserService } from 'src/app/Services/user.service';
 import * as jwt_decode from 'jwt-decode';
+import { DataService } from 'src/app/Services/data.service';
+import { FriendService } from 'src/app/Services/friend.service';
+import { friend } from 'src/app/Models/friend';
 
 @Component({
   selector: 'app-home-page',
@@ -19,18 +22,27 @@ export class HomePageComponent implements OnInit {
   ID_User: number;
   sendMessage: message = new message();
   messages: message[];
-  constructor(private router: ActivatedRoute, private userService: UserService, private fb: FormBuilder, private messageService: MessageService,private Cookie:CookieService) {
+  friends: friend[];
+  constructor(private router: ActivatedRoute, private userService: UserService, private fb: FormBuilder,
+    private messageService: MessageService, private Cookie: CookieService, private dataService: DataService, private friendService: FriendService) {
+
     const token = this.Cookie.get('token');
     const decodedToken = jwt_decode(token);
     this.modelUserName = decodedToken['name'];
-    
+
     this.userService.getUserByUserName(this.modelUserName).pipe(
-      map(data => this.ID_User = data.ID)
-    ).subscribe(data => console.log(this.ID_User));
+      map(data => {
+        this.ID_User = data.ID
+        this.dataService.changeID_User(data.ID)
+      })).subscribe(data => {
+        console.log(this.ID_User)
+        this.getFriends();
+      });
+
   }
 
   ngOnInit() {
-    this.createForm(); 
+    this.createForm();
     this.refresh();
   }
   createForm() {
@@ -50,13 +62,17 @@ export class HomePageComponent implements OnInit {
     this.sendMessage.Del_Msg_Time = currentDate.toISOString().slice(0, 19).replace("T", " ");
 
     this.messageService.sendMessageToDb(this.sendMessage)
-      .subscribe(()=> this.refresh(),
+      .subscribe(() => { this.refresh() },
         error => console.log('error', error));
     this.messageForm.reset();
-    
+
   }
-  refresh()
-  {
-   this.messageService.getAllTheMessages().subscribe(data => this.messages = data);
+  refresh() {
+    this.messageService.getAllTheMessages(1).subscribe(data => this.messages = data);
+  }
+  getFriends() {
+    this.friendService.getAllTheFriendsByID_User(this.ID_User).pipe(
+      tap(data => console.log(data))
+    ).subscribe(data => this.friends = data);
   }
 }
