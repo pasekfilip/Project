@@ -18,9 +18,9 @@ namespace WebAPI.Models.Tables
         public string Password { get; set; }
         public string Picture { get; set; }
 
-        public /*virtual*/ ICollection<Friends> Friends { get; set; }
-        public /*virtual*/ ICollection<Friends> Users { get; set; }
-        public /*virtual*/ ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Friends> Friends { get; set; }
+        public virtual ICollection<Friends> Users { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
         //public virtual ICollection<Chat> Chats { get; set; }
 
     }
