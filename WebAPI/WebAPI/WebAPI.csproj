@@ -243,6 +243,7 @@
     <Compile Include="Models\Tables\Chat_Member.cs" />
     <Compile Include="Models\Tables\File.cs" />
     <Compile Include="Models\Tables\Friends.cs" />
+    <Compile Include="Models\Tables\Login.cs" />
     <Compile Include="Models\Tables\Message.cs" />
     <Compile Include="Models\Tables\Token.cs" />
     <Compile Include="Models\Tables\User.cs" />

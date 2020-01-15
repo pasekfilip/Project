@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 import { map, tap } from 'rxjs/operators';
+import { friend } from 'src/app/Models/friend';
 import { message } from 'src/app/Models/message';
-import { MessageService } from 'src/app/Services/message.service';
-import { UserService } from 'src/app/Services/user.service';
-import * as jwt_decode from 'jwt-decode';
 import { DataService } from 'src/app/Services/data.service';
 import { FriendService } from 'src/app/Services/friend.service';
-import { friend } from 'src/app/Models/friend';
+import { MessageService } from 'src/app/Services/message.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -68,6 +68,13 @@ export class HomePageComponent implements OnInit {
 
   }
   refresh() {
+    // const source = interval(5000);
+    // source.pipe(
+    //   map(data => {
+    //     this.messageService.getAllTheMessages(1).subscribe(data => this.messages = data);
+    //   })
+    // ).subscribe();
+
     this.messageService.getAllTheMessages(1).subscribe(data => this.messages = data);
   }
   getFriends() {

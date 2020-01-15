@@ -25,6 +25,7 @@
         <a routerLink="/SignUp" class="nav-link active">SignUp</a> 
        
 </div> -->
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <div class="container-fluid">
@@ -34,10 +35,10 @@
             <label>UserName</label>
             <input type="text" class="form-control" name="userName"
                 [class.is-invalid]="userName.invalid && userName.touched" [(ngModel)]= "model.userName" #userName="ngModel" required
-                UniqueUserName>
+                >
             <div class="text-danger" *ngIf="userName.invalid &&(userName.dirty || userName.touched)">
                 <div class="text-danger" *ngIf="userName.errors['required']">UserName is required</div>
-                <div class="text-danger" *ngIf="userName.errors['UniqueUserName']">UserName is not registered</div>
+                <!-- <div class="text-danger" *ngIf="userName.errors['UniqueUserName']">UserName is not registered</div> -->
             </div>
         </div>
 
@@ -47,11 +48,14 @@
             <input type="password" [class.is-invalid]="password.invalid && password.touched" class="form-control"
                 name="password" required [(ngModel)]="model.password" #password="ngModel">
             <div class="text-danger" *ngIf="password.invalid &&(password.dirty || password.touched)">
-                <div class="text-danger" *ngIf="password.errors['required']">password is required</div>
+                <div class="text-danger" *ngIf="password.errors['required']">Password is required</div>
                 <!--  validace když user zkouší hesla-->
             </div>
         </div>
-        <button  type="button"  (click)="onLogin()" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+        <button type="button"  (click)="onLogin()" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+        <div *ngIf="valid" class="text-danger">
+            UserName or Password is incorrect
+        </div>
       
     </form>
 </div>

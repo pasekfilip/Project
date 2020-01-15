@@ -386,7 +386,6 @@ C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\bin\System.Web.WebPages.Raz
 C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\bin\Antlr3.Runtime.pdb
 C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\obj\Debug\WebAPI.csprojAssemblyReference.cache
-C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
 C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\filip\OneDrive\Plocha\Project\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
