@@ -13,12 +13,15 @@ namespace WebAPI.Controllers
     public class TokenController : ApiController
     {
         private TokenRepository repository = new TokenRepository();
+
+
         [Route("api/Token")]
         [HttpPost]
-        public Object Login([FromBody]string userName)
+        public string Login([FromBody]Login login)
         {
-            return this.repository.GetToken(userName);
+            return this.repository.GetToken(login);
         }
+    
         [Route("api/Token/Validate")]
         [HttpPost]
         public bool ValidateToken([FromBody]string token)

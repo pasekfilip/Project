@@ -13,6 +13,5 @@ export class MessagesComponent implements OnInit {
   @Input() message: message;
  
   ngOnInit() {
-      
   }
 }

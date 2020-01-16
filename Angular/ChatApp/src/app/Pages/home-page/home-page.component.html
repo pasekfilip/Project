@@ -1,16 +1,35 @@
-<div class="container-fluid mb-4">
-<app-nav [ID_User]="ID_User"></app-nav>
-<div *ngFor="let message of messages">
-    <app-messages [message]="message"></app-messages>
-</div>
+<div id="chat-container">
+    <div id="search-container">
+        <input type="search" placeholder="Search">
+    </div>
 
-<form [formGroup]="messageForm" (ngSubmit)="onSend()" class="row">
-    <div class="col">
-        <input type="text" name="message" formControlName="message" class="form-control">
+    <div id="conversation-list">
+        <app-friends [friends]="friends"></app-friends>
     </div>
-    <div class="col">
-        <button class="btn btn-primary" type="submit">Send</button>
+    <div id="new-message-container">
+        <a href="#">+</a>
     </div>
-    
-</form>
+    <div id="chat-title">
+        <span></span>
+        <img src="../../../assets/pictures/trash-icon.png" alt="Delete Conversation" width="100%">
+    </div>
+    <div id="chat-message-list">
+        <div *ngFor="let message of messages">
+            <app-messages [message]="message"></app-messages>
+        </div>
+    </div>
+
+    <form [formGroup]="messageForm" (ngSubmit)="onSend()" id="chat-form">
+        <!-- <div class="col">
+            <input type="text" name="message" formControlName="message" class="form-control">
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" type="submit">Send</button>
+        </div> -->
+        
+        <button type="button"><img src="../../../assets/pictures/blue-paper-clip.png" alt="Add Attachment" width="100%"></button>
+        <input type="text" name="message" formControlName="message" placeholder="type a message">
+        <button type="submit"><img src="../../../assets/pictures/computer-icons-download-symbol-send-email-button.jpg" alt="Send msg" width="100%"></button>
+    </form>
+
 </div>
