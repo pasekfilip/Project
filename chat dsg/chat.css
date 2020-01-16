@@ -1,20 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body{
-    height: 100%;
-}
 
 html{
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #57c1eb 0%, #246fa8 100%);
     font-size: 10px;
 }
-body{
+#bodys{
     display: grid;
     place-items: center;
 }
@@ -169,7 +159,7 @@ body{
 #chat-message-list{
     grid-area: chat-message-list;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 0 20px;
     overflow-y: scroll;
 }
