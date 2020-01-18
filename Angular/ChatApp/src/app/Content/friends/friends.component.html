@@ -5,10 +5,10 @@
         </div>
     </ul>
 </div> -->
-<div class="conversation" *ngFor="let friend of friends">
+<div class="conversation" *ngFor="let user of users" (click)="sendidChat()">
     <img src="../../../assets/pictures/DefaultUser.png" alt="user photo">
     <div class="title-text">
-        {{friend.ID_Friend}}
+        {{user.UserName}}
     </div>
     <div class="created-date">
         8.1

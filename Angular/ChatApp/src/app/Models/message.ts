@@ -6,5 +6,5 @@ export class message
     TheMessage:string;
     ID_Chat:number;
     Send_Time:String;
-    Del_Msg_Time:String;
+    Del_Msg_Time?:String;
 }
