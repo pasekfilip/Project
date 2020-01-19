@@ -5,7 +5,7 @@
     </div>
 
     <div id="conversation-list">
-        <app-friends [users]="users"></app-friends>
+        <app-friends [users]="users" [ID_User]="ID_User" (idChat)="receiveChatID($event)"></app-friends>
     </div>
     <div id="new-message-container">
         <a href="#">+</a>

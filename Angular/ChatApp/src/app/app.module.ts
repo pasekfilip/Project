@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { FormsModule } from '@angular/forms';
 import { } from './app-routing.module'
 import { UserService } from './Services/user.service';
-import { UniqueUserNameValidatorDirective } from './Validation/unique-user-name-validator.directive';
 import { HomePageComponent } from './Pages/home-page/home-page.component';
 import { MessagesComponent } from './Content/messages/messages.component';
 import { MessageService } from './Services/message.service';
@@ -16,12 +15,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './Services/auth.service';
 import { AuthGuard } from './Validation/auth.guard';
 import { FriendsComponent } from './Content/friends/friends.component';
+import { ChatService } from './Services/chat.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponenets,
-    UniqueUserNameValidatorDirective,
     HomePageComponent,
     MessagesComponent,
     FriendsComponent
@@ -33,7 +32,7 @@ import { FriendsComponent } from './Content/friends/friends.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserService, MessageService, FriendService, CookieService,AuthService,
+  providers: [UserService, MessageService, FriendService, CookieService,AuthService,ChatService,
   AuthGuard],
   bootstrap: [AppComponent]
 })

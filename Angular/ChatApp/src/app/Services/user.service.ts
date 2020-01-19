@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../Models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({

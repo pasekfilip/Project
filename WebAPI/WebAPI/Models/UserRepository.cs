@@ -15,7 +15,15 @@ namespace WebAPI.Models
         }
         public List<User> FindUsersByIDs(int[] IDs)
         {
-            return this.context.User.Where(user => IDs.Contains(user.ID)).ToList();
+            
+            List<User> list = this.context.User.Where(user => IDs.Contains(user.ID)).ToList();
+            return list.Select(x => new User
+            {
+                ID = x.ID,
+                UserName = x.UserName,
+                Email = x.Email,
+                Picture = x.Picture
+            }).ToList();
         }
         public User FindByUserName(string uName)
         {

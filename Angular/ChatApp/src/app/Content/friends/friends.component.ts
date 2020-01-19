@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/Models/user';
+import { ChatService } from 'src/app/Services/chat.service';
 import { FriendService } from 'src/app/Services/friend.service';
-import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-friends',
@@ -12,15 +12,19 @@ import { UserService } from 'src/app/Services/user.service';
 export class FriendsComponent implements OnInit {
 
   @Input() users: User[];
+  @Input() ID_User: number;
   @Output() idChat = new EventEmitter<number>();
-  constructor(private router: ActivatedRoute, private friendService: FriendService, private userService: UserService) {
+  private idFriend : number;
+  constructor(private router: ActivatedRoute, private friendService: FriendService, private chatService: ChatService) {
   }
 
   ngOnInit() { 
   }
-  sendidChat()
+  sendIdChat(id:number)
   {
-    this.idChat.emit()
+    this.idFriend = id;
+    const Ids = [this.ID_User,this.idFriend];
+    this.chatService.GetChatID(Ids).subscribe(x => this.idChat.emit(x));
   }
 
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { UserService } from '../../Services/user.service';
-import { User } from 'src/app/Models/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UniqueUserNameValidator } from 'src/app/Validation/unique-user-name-validator.directive';
+import { UserService } from '../../Services/user.service';
 
 @Component({
   selector: 'app-sign-up-page',
