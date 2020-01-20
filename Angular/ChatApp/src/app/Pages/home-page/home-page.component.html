@@ -8,7 +8,7 @@
         <app-friends [users]="users" [ID_User]="ID_User" (idChat)="receiveChatID($event)"></app-friends>
     </div>
     <div id="new-message-container">
-        <a href="#">+</a>
+        <a (click)="openDialog()">+</a>
     </div>
     <div id="chat-title">
         <span></span>
@@ -16,7 +16,7 @@
     </div>
     <div id="chat-message-list">
         <div *ngFor="let message of messages">
-            <app-messages [message]="message"></app-messages>
+            <app-messages [message]="message" [ID_User]="ID_User"></app-messages>
         </div>
     </div>
 

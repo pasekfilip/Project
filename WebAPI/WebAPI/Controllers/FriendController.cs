@@ -38,6 +38,18 @@ namespace WebAPI.Controllers
         {
             return this.repository.FindByUserId(id);
         }
+        [Route("api/Friends/SearchForFriend")]
+        [HttpPost]
+        public Object SearchForFriend(SearchFriend friend)
+        {
+            return this.repository.CheckIfUserExistsAndIfTheUserIsNotAlreadyAddedAsFriend(friend);
+        }
+        [Route("api/Friends/CreateFriend")]
+        [HttpPost]
+        public void CreateFriend(SearchFriend friend)
+        {
+            this.repository.CreateFriendWithFriendSearch(friend);
+        }
 
         // POST: api/Friends
         [Route("api/Friends")]

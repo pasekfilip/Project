@@ -1,4 +1,8 @@
-<div class="message-row other-message">
+<div *ngIf ="ID_User == message.ID_User" class="message-row you-message">
+    <div class="message-text">{{message.TheMessage}}</div>
+    <div class="message-time">{{message.Send_Time}}</div>
+</div>
+<div *ngIf ="ID_User != message.ID_User" class="message-row other-message">
     <div class="message-text">{{message.TheMessage}}</div>
     <div class="message-time">{{message.Send_Time}}</div>
 </div>

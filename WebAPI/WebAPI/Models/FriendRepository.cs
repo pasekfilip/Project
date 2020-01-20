@@ -10,7 +10,7 @@ namespace WebAPI.Models
     public class FriendRepository
     {
         private MyContext context = new MyContext();
-
+        private UserRepository rep = new UserRepository();
         public List<Friends> FindAll()
         {
             return this.context.Friends.ToList();
@@ -19,6 +19,41 @@ namespace WebAPI.Models
         public List<Friends> FindByUserId(int id)
         {
             return this.context.Friends.Where(x => x.ID_User == id).ToList();
+        }
+
+        public Object CheckIfUserExistsAndIfTheUserIsNotAlreadyAddedAsFriend(SearchFriend friend)
+        {
+            int? ID_Friend = this.rep.FindByUserName(friend.FriendName)?.ID;
+            if(ID_Friend != null)
+            {
+                if(IfTheUserIsNotAlreadyAddedAsFriend())
+                {
+                    return true;
+                }
+                else
+                {
+                    return new { data = "You have this User added already" };
+                }
+            }
+            else
+            {
+                return new { data = "User dosen't exist" };
+            }
+
+            bool IfTheUserIsNotAlreadyAddedAsFriend()
+            {
+                List<Friends> list = this.FindByUserId(friend.ID_User);
+                for (int i = 0; i < list.Count(); i++)
+                {
+                    if(list[i].ID_Friend == ID_Friend)
+                    {
+                        return false;
+                    }
+                    else { }
+
+                }
+                return true;
+            }
         }
         public Friends FindById(int id)
         {
@@ -29,7 +64,14 @@ namespace WebAPI.Models
             this.context.Friends.Add(friend);
             this.context.SaveChanges();
         }
-
+        public void CreateFriendWithFriendSearch(SearchFriend searchFriend)
+        {
+            int ID_Friend = this.rep.FindByUserName(searchFriend.FriendName).ID;
+            Friends friend = new Friends();
+            friend.ID_User = searchFriend.ID_User;
+            friend.ID_Friend = ID_Friend;
+            this.Create(friend);
+        }
         public void Update(Friends friend, int id)
         {
             //User current = this.FindById(id);

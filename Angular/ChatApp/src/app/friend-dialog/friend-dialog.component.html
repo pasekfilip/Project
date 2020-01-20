@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Add Friend</h2>
+
+<form [formGroup]="addFriendForm" class="normal-form" (submit)="onSubmit()">
+    <mat-form-field>
+        <input formControlName="FriendName" matInput >
+        
+            <mat-error *ngIf="display">{{displayText}}</mat-error>
+            <mat-error *ngIf="addFriendForm.controls['FriendName'].errors?.required">This field is mandatory.</mat-error>
+       
+    </mat-form-field>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="addFriendForm.invalid">Add</button>
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</form>

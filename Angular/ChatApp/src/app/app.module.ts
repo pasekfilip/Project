@@ -16,6 +16,9 @@ import { AuthService } from './Services/auth.service';
 import { AuthGuard } from './Validation/auth.guard';
 import { FriendsComponent } from './Content/friends/friends.component';
 import { ChatService } from './Services/chat.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { FriendDialogComponent } from './friend-dialog/friend-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,18 @@ import { ChatService } from './Services/chat.service';
     routingComponenets,
     HomePageComponent,
     MessagesComponent,
-    FriendsComponent
+    FriendsComponent,
+    FriendDialogComponent
   ],
+  entryComponents:[FriendDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [UserService, MessageService, FriendService, CookieService,AuthService,ChatService,
   AuthGuard],
