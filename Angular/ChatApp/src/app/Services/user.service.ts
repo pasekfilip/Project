@@ -22,8 +22,8 @@ export class UserService {
   findAll(): Observable<User[]> {
     return this.http.get<User[]>(this.url);
   }
-  registr(userData) {
-    return this.http.post<any>(this.url, userData);
+  registr(userData) :Observable<User>{
+    return this.http.post<User>(this.url, userData);
   }
   getUserByUserName(uName: string): Observable<User> | null {
     return this.http.post<User>(`${this.url}/FindByUserName`,JSON.stringify(uName),this.headers);

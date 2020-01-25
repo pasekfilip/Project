@@ -6,7 +6,7 @@
     </ul>
 </div> -->
 <div class="conversation" *ngFor="let user of users" (click)="sendIdChat(user.ID)">
-    <img src="../../../assets/pictures/DefaultUser.png" alt="user photo">
+    <img src={{user.Picture}} alt="user photo">
     <div class="title-text">
         {{user.UserName}}
     </div>

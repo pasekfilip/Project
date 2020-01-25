@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { loginUser } from '../Models/loginUser';
 
@@ -20,7 +20,12 @@ export class AuthService {
   {
     return this.http.post(this.url,loginData,this.headers);
   }
-  loggedIn()
+  loggedIn() : Observable<boolean>
+  {
+     let result:boolean;
+     return this.http.post<boolean>(`${this.url}/Validate`,JSON.stringify(this.cookie.get('token')),this.headers);
+  }
+  ifTokenExists()
   {
     return !!this.cookie.get('token');
   }
