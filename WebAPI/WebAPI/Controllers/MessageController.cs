@@ -45,14 +45,5 @@ namespace WebAPI.Controllers
             value.ID = id;
             this.repository.Update(value, id);
         }
-
-
-        [Route("api/Message/{id}")]
-        [HttpDelete]
-        public void Delete(int id)
-        {
-            Message message = this.repository.FindById(id);
-            this.repository.Delete(message);
-        }
     }
 }

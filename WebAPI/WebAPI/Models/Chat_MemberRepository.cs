@@ -80,9 +80,9 @@ namespace WebAPI.Models
             context.SaveChanges();
         }
 
-        public void Delete(Chat_Member chat_member)
+        public void Delete(int idChat)
         {
-            this.context.Chat_Members.Remove(chat_member);
+            this.context.Chat_Members.RemoveRange(this.context.Chat_Members.Where(x => x.ID_Chat == idChat));
             this.context.SaveChanges();
         }
     }

@@ -9,14 +9,17 @@ export class ChatService {
 
   constructor(private http:HttpClient) { }
 
-  private url:string = "http://localhost:49497/api/Chat_Members/";
+  private url:string = "http://localhost:49497/api/";
   private headers={
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
     })}
   GetChatID(Ids:number[]) : Observable<number>
   {
-    return this.http.post<number>(`${this.url}/ChatID`,Ids,this.headers);
+    return this.http.post<number>(`${this.url}Chat_Members//ChatID`,Ids,this.headers);
   }
-
+  DeleteChatAndAllTheMessages(ID_Chat)
+  { 
+    return this.http.delete(`${this.url}Chats/Delete/${ID_Chat}`);
+  }
 }

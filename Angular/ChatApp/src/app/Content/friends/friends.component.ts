@@ -15,6 +15,7 @@ export class FriendsComponent implements OnInit {
   @Input() users: User[];
   @Input() ID_User: number;
   @Output() idChat = new EventEmitter<number>();
+  idChatForDeletetingFriend:number;
   private idFriend : number;
   constructor(private router: ActivatedRoute, private friendService: FriendService, private chatService: ChatService) {
   }
@@ -30,7 +31,14 @@ export class FriendsComponent implements OnInit {
   {
     const friends:friend = {ID_User:this.ID_User,ID_Friend: id};
     this.friendService.deleteFriend(friends).subscribe(() => console.log("ok"));
-    this.users = this.users.filter(x => x.ID == id);
+    this.users = this.users.filter(x => x.ID != id);
+
+    this.idFriend = id;
+    const Ids = [this.ID_User,this.idFriend];
+    this.chatService.GetChatID(Ids).subscribe(x => 
+      { this.idChatForDeletetingFriend = x;
+        this.chatService.DeleteChatAndAllTheMessages(x).subscribe();
+      });
   }
 }
 

@@ -9,7 +9,7 @@ namespace WebAPI.Models.Tables
     public class ChatRepository
     {
         private MyContext context = new MyContext();
-
+        
         public List<Chat> FindAll()
         {
             return this.context.Chats.ToList();
@@ -36,9 +36,11 @@ namespace WebAPI.Models.Tables
             context.SaveChanges();
         }
 
-        public void Delete(Chat chats)
+        public void Delete(int idChat)
         {
-            this.context.Chats.Remove(chats);
+          
+            Chat chat = this.FindById(idChat);
+            this.context.Chats.Remove(chat);
             this.context.SaveChanges();
         }
     }

@@ -52,12 +52,6 @@ namespace WebAPI.Controllers
         //}
 
 
-        [Route("api/Chat_Member/{id}")]
-        [HttpDelete]
-        public void Delete(int id)
-        {
-            Chat_Member chat_member = this.repository.FindById(id);
-            this.repository.Delete(chat_member);
-        }
+        
     }
 }
