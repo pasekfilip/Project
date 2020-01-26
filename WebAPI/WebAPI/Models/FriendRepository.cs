@@ -94,7 +94,8 @@ namespace WebAPI.Models
 
         public void Delete(Friends friend)
         {
-            this.context.Friends.Remove(friend);
+            Friends result = this.context.Friends.Where(x => friend.ID_Friend == x.ID_Friend && friend.ID_User == x.ID_User).FirstOrDefault();
+            this.context.Friends.Remove(result);
             this.context.SaveChanges();
         }
     }

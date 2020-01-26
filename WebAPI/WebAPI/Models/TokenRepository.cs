@@ -39,7 +39,7 @@ namespace WebAPI.Models
                     var token = new JwtSecurityToken(issuer,
                                     issuer,
                                     permClaims,
-                                    expires: DateTime.UtcNow.AddSeconds(15),
+                                    expires: DateTime.UtcNow.AddMinutes(15),
                                     signingCredentials: credentials); 
 
                     var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);

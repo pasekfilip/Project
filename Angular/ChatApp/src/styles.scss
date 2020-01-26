@@ -81,7 +81,7 @@ html{
 }
 
 .conversation:hover{
-    cursor: pointer;
+
 }
 
 .conversation > img{
@@ -89,6 +89,7 @@ html{
     height: 40px;
     width: 40px;
     border-radius: 100%;
+    cursor: pointer;
 }
 
 .title-text{
@@ -111,6 +112,7 @@ html{
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
 }
 
 

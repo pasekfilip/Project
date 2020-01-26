@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FriendsComponent } from '../Content/friends/friends.component';
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './friend-dialog.component.html',
   styleUrls: ['./friend-dialog.component.scss']
 })
-export class FriendDialogComponent implements OnInit {
+export class FriendDialogComponent implements OnInit{
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef:MatDialogRef<FriendsComponent>,private fb:FormBuilder,private friendService:FriendService) { }
   addFriendForm:FormGroup;
@@ -39,7 +39,6 @@ export class FriendDialogComponent implements OnInit {
         
         if(result == true)
         {
-          // this.addFriendForm.controls['FriendName'].setErrors({'incorrect': false});
           this.friendService.createFriend(this.friend);
           this.dialogRef.close("Success");
           return result;
@@ -59,5 +58,4 @@ export class FriendDialogComponent implements OnInit {
       })
     ).subscribe();
   }
-
 }

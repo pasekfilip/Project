@@ -98,6 +98,6 @@ export class HomePageComponent implements OnInit {
     dialogConfig.data = {data: {ID_User: this.ID_User}}
     let dialogRef = this.dialog.open(FriendDialogComponent,dialogConfig);
       
-    dialogRef.afterClosed().subscribe((data) => {console.log(data); setTimeout(() => this.getFriends(),2000)});
+    dialogRef.afterClosed().subscribe((data) => {console.log(data); setTimeout(() => this.getFriends(),200)});
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { friend } from '../Models/friend';
 import { searchFriend } from '../Models/searchFriend';
@@ -22,5 +22,15 @@ export class FriendService {
   createFriend(friend:searchFriend)
   {
     return this.http.post(`${this.url}CreateFriend`,friend).subscribe();
+  }
+  deleteFriend(friends:friend)
+  {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: friends
+    };
+    return this.http.delete(`${this.url}Delete`,options);
   }
 }

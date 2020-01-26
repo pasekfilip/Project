@@ -5,14 +5,15 @@
         </div>
     </ul>
 </div> -->
-<div class="conversation" *ngFor="let user of users" (click)="sendIdChat(user.ID)">
-    <img src={{user.Picture}} alt="user photo">
+<div class="conversation" *ngFor="let user of users" >
+    <img src={{user.Picture}} alt="user photo" (click)="sendIdChat(user.ID)">
     <div class="title-text">
         {{user.UserName}}
     </div>
     <div class="created-date">
         8.1
     </div>
-    <div class="conversation-message">
+    <div class="conversation-message" (click)="deleteFriend(user.ID)">
+        <img class="delete"src="../../../assets/pictures/trash-icon.png" alt="Delete Conversation" width="100%">
     </div>
 </div>

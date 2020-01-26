@@ -59,22 +59,12 @@ namespace WebAPI.Controllers
             this.repository.Create(value);
         }
 
-        //// PUT: api/Friends/5
-        //[Route("api/Friends/{id}")]
-        //[HttpPost]
-        //public void Put(int id, [FromBody]Friends value)
-        //{
-        //    value.ID = id;
-        //    this.repository.Update(value, id);
-        //}
-
         // DELETE: api/Friends/5
-        [Route("api/Friends/{id}")]
+        [Route("api/Friends/Delete")]
         [HttpDelete]
-        public void Delete(int id)
+        public void Delete(Friends friends)
         {
-            Friends Friends = this.repository.FindById(id);
-            this.repository.Delete(Friends);
+            this.repository.Delete(friends);
         }
     }
 }
