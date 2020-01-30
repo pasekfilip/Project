@@ -140,7 +140,7 @@ html{
 }
 #chat-title{
     display: grid;
-    grid: 36px/ 1fr 36px;
+    grid-template-columns: 5% 95%;
     align-content: center;
     align-items: center;
     grid-area: chat-title;
@@ -152,6 +152,9 @@ html{
     padding: 0 20px;
 }
 
+#chat-title > span{
+    text-align: right;
+}
 #chat-title > img{
     cursor: pointer;
 }
@@ -159,7 +162,7 @@ html{
 #chat-message-list{
     grid-area: chat-message-list;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 0 20px;
     overflow-y: scroll;
 }
