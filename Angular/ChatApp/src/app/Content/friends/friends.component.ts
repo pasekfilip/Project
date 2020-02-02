@@ -1,11 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { friend } from 'src/app/Models/friend';
 import { User } from 'src/app/Models/user';
+import { ChatService } from 'src/app/Services/chat.service';
 import { FriendService } from 'src/app/Services/friend.service';
-import { UserService } from 'src/app/Services/user.service';
-import { map, filter } from 'rxjs/operators';
-import { DataService } from 'src/app/Services/data.service';
 
 @Component({
   selector: 'app-friends',
@@ -14,26 +12,34 @@ import { DataService } from 'src/app/Services/data.service';
 })
 export class FriendsComponent implements OnInit {
 
-  @Input() friends: friend[];
-  users: User[];
-  constructor(private router: ActivatedRoute, private friendService: FriendService, private userService: UserService) {
-
+  @Input() users: User[];
+  @Input() ID_User: number;
+  @Output() idChat = new EventEmitter<number>();
+  idChatForDeletetingFriend:number;
+  private idFriend : number;
+  constructor(private router: ActivatedRoute, private friendService: FriendService, private chatService: ChatService) {
   }
-
-  ngOnInit() {
-    // this.dataService.currentID_User.subscribe(ID => this.ID_User = ID);
-    // this.friendService.getAllTheFriendsByID_User(this.ID_User).pipe(
-    //   tap(data => console.log(data))
-    // ).subscribe(data => this.Friends = data);
-    this.userService.findAll().pipe().subscribe(data => {this.users = data,console.log(data)});
-    
-      
-   
-     
-        
-
+  ngOnInit() { 
   }
+  sendIdChat(id:number)
+  {
+    this.idFriend = id;
+    const Ids = [this.ID_User,this.idFriend];
+    this.chatService.GetChatID(Ids).subscribe(x => this.idChat.emit(x));
+  }
+  deleteFriend(id:number)
+  {
+    const friends:friend = {ID_User:this.ID_User,ID_Friend: id};
+    this.friendService.deleteFriend(friends).subscribe(() => console.log("ok"));
+    this.users = this.users.filter(x => x.ID != id);
 
+    this.idFriend = id;
+    const Ids = [this.ID_User,this.idFriend];
+    this.chatService.GetChatID(Ids).subscribe(x => 
+      { this.idChatForDeletetingFriend = x;
+        this.chatService.DeleteChatAndAllTheMessages(x).subscribe();
+      });
+  }
 }
 
 

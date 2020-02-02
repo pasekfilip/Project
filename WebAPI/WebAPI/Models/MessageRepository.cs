@@ -39,9 +39,9 @@ namespace WebAPI.Models
             context.SaveChanges();
         }
 
-        public void Delete(Message message)
+        public void Delete(int idChat)
         {
-            this.context.Messages.Remove(message);
+            this.context.Messages.RemoveRange(this.context.Messages.Where(x => x.ID_Chat == idChat));
             this.context.SaveChanges();
         }
     }

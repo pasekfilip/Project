@@ -11,7 +11,7 @@ export class MessagesComponent implements OnInit {
 
   constructor(private userService:UserService) { }
   @Input() message: message;
- 
+  @Input() ID_User: number;
   ngOnInit() {
   }
 }

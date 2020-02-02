@@ -9,11 +9,13 @@ using WebAPI.Models;
 using WebAPI.Models.Tables;
 namespace WebAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ChatController : ApiController
     {
         private ChatRepository repository = new ChatRepository();
+        private MessageRepository repM = new MessageRepository();
+        private Chat_MemberRepository repChM = new Chat_MemberRepository();
 
-       
         [Route("api/Chats")]
         [HttpGet]
         public List<Chat> Get()
@@ -46,12 +48,13 @@ namespace WebAPI.Controllers
         }
 
        
-        [Route("api/Chats/{id}")]
+        [Route("api/Chats/Delete/{id}")]
         [HttpDelete]
         public void Delete(int id)
         {
-            Chat chat = this.repository.FindById(id);
-            this.repository.Delete(chat);
+            repM.Delete(id);
+            repChM.Delete(id);
+            this.repository.Delete(id);
         }
     }
 }

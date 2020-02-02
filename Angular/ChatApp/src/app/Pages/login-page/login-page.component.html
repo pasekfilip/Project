@@ -1,34 +1,7 @@
-<!-- <div class="container-fluid">
-    <h1>Login</h1> 
-     <form ng-app="" ng-controller="validateCtrl" name="loginForm"  ng-form [formGroup]="loginForm">
-        <div class="form-group">
-            <label>UserName</label>
-            <input [class.is-invalid]= "userName.invalid && userName.touched" formControlName="userName" type="text" class="form-control" ngModel UniqueUserName >
-
-            <div *ngIf="userName.errors['UniqueUserName']">UserName confrim no match </div>
-
-            
-
-            <div *ngIf="userName.invalid && userName.touched">
-                <small *ngIf="userName.errors?.exists" class="text-danger">{{userName.errors?.exists.value}} dosent exist</small>
-            </div>
-                
-           
-
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input formControlName="password" type="password"  class="form-control" >
-        </div>
-        <button [disabled]= '!loginForm.valid' class="btn btn-primary" type="submit" (click)="onSubmit()">Login in</button>
-    </form> 
-        <a routerLink="/SignUp" class="nav-link active">SignUp</a> 
-       
-</div> -->
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <h1>Login</h1>
     <form #loginForm="ngForm">
         <div class="form-group">
@@ -38,7 +11,6 @@
                 >
             <div class="text-danger" *ngIf="userName.invalid &&(userName.dirty || userName.touched)">
                 <div class="text-danger" *ngIf="userName.errors['required']">UserName is required</div>
-                <!-- <div class="text-danger" *ngIf="userName.errors['UniqueUserName']">UserName is not registered</div> -->
             </div>
         </div>
 
@@ -49,7 +21,6 @@
                 name="password" required [(ngModel)]="model.password" #password="ngModel">
             <div class="text-danger" *ngIf="password.invalid &&(password.dirty || password.touched)">
                 <div class="text-danger" *ngIf="password.errors['required']">Password is required</div>
-                <!--  validace když user zkouší hesla-->
             </div>
         </div>
         <button type="button"  (click)="onLogin()" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
@@ -59,15 +30,56 @@
       
     </form>
 </div>
-    <a routerLink="/SignUp" class="nav-link m-2">SingUp</a>
-    <br>
-<div class="container-fluid">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Fomr status: {{loginForm.status}}</h5>
-            <h6 class="card-subtitll mb-2 text-muted">Form value</h6>
-            <pre>{{model.userName}}</pre>
-            <pre>{{model.password}}</pre>
+     -->
+    
+<!-- <form #loginForm="ngForm" class="normal-form example-container">
+    <mat-card class="mat-elevation-z12">
+    <mat-form-field>
+        <input type="text" matInput name="userName" [(ngModel)]="model.userName" #userName="ngModel" required>
+        <mat-error *ngIf="userName.invalid &&(userName.dirty || userName.touched)&&userName.errors['required']">UserName is required</mat-error>
+    </mat-form-field><br>
+    <mat-form-field>
+        <input type="password"  placeholder="Password"matInput name="password" required [(ngModel)]="model.password" #password="ngModel">
+        <mat-error *ngIf="password.invalid &&(password.dirty || password.touched) && password.errors['required']">Password is required</mat-error>
+    </mat-form-field>
+    
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" type="button" (click)="onLogin()" [disabled]="!loginForm.valid">Login</button>
+        <div *ngIf="valid" class="text-danger">
+            UserName or Password is incorrect
         </div>
-    </div>
-</div>
+    </mat-dialog-actions>
+</mat-card>
+    <a routerLink="/SignUp" class="nav-link m-2">SignUp</a>
+</form> -->
+
+
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+<mat-card-content>
+<form #loginForm="ngForm" class="normal-form">
+  <p>
+    <mat-form-field>
+        <input type="text" placeholder="UserName" matInput name="userName" [(ngModel)]="model.userName" #userName="ngModel" required>
+        <mat-error *ngIf="userName.invalid &&(userName.dirty || userName.touched)&&userName.errors['required']">UserName is required</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+        <input type="password" placeholder="Password" matInput name="password" required [(ngModel)]="model.password" #password="ngModel">
+        <mat-error *ngIf="password.invalid &&(password.dirty || password.touched) && password.errors['required']">Password is required</mat-error>
+    </mat-form-field>
+  </p>
+
+
+  
+    <button mat-stroked-button color="primary" class="btn-block" (click)="onLogin()" [disabled]="!loginForm.valid">Log in</button>
+    <mat-error *ngIf="valid && loginForm.valid" >
+        UserName or Password is incorrect
+    </mat-error>
+    <a mat-button routerLink="/SignUp" class="nav-link m-2">SignUp</a>
+
+</form>
+</mat-card-content>
+</mat-card>

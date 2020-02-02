@@ -39,8 +39,8 @@ namespace WebAPI.Models
                     var token = new JwtSecurityToken(issuer,
                                     issuer,
                                     permClaims,
-                                    expires: DateTime.Now.AddDays(1),
-                                    signingCredentials: credentials);
+                                    expires: DateTime.UtcNow.AddMinutes(15),
+                                    signingCredentials: credentials); 
 
                     var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);
 
@@ -60,20 +60,32 @@ namespace WebAPI.Models
         }
         public bool ValidateToken(string authToken)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var validationParameters = GetValidationParameters();
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var validationParameters = GetValidationParameters();
 
-            SecurityToken validatedToken;
-            IPrincipal principal = tokenHandler.ValidateToken(authToken, validationParameters, out validatedToken);
-            return true;
+                SecurityToken validatedToken;
+                IPrincipal principal = tokenHandler.ValidateToken(authToken, validationParameters, out validatedToken);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+          
+            
         }
         private TokenValidationParameters GetValidationParameters()
         {
             return new TokenValidationParameters()
             {
                 ValidateLifetime = true, // Because there is expiration in the generated token
-                ValidateAudience = true, // Because there is audiance in the generated token
-                ValidateIssuer = true,   // Because there is issuer in the generated token
+                ValidateAudience = false, // Because there is audiance in the generated token
+                ValidateIssuer = false,   // Because there is issuer in the generated token
+                RequireExpirationTime = true,
+                ClockSkew = TimeSpan.FromSeconds(1),
                 ValidIssuer = "http://localhost:4200/",
                 ValidAudience = "http://localhost:4200/",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.key)) // The same key as the one that generate the token

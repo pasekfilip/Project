@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UniqueUserNameValidator } from 'src/app/Validation/unique-user-name-validator.directive';
 import { UserService } from '../../Services/user.service';
 import { User } from 'src/app/Models/user';
-import { UniqueUserNameValidator } from 'src/app/Validation/unique-user-name-validator.directive';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -12,6 +12,7 @@ import { UniqueUserNameValidator } from 'src/app/Validation/unique-user-name-val
 export class SignUpPageComponent implements OnInit {
 
   registrationForm: FormGroup;
+  user:User = new User;
 
   constructor(private registrationService: UserService, private fb: FormBuilder) { }
 
@@ -24,7 +25,8 @@ export class SignUpPageComponent implements OnInit {
         userName: ['', [Validators.required, Validators.minLength(3)],
           UniqueUserNameValidator(this.registrationService)],
         email: ['', Validators.required],
-        password: ['', Validators.required]
+        password: ['', Validators.required],
+        file: ['']
       }
     )
   }
@@ -38,8 +40,22 @@ export class SignUpPageComponent implements OnInit {
   get password() {
     return this.registrationForm.get('password');
   }
+  handleUpload(event)
+  {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => 
+    {
+      this.user.Picture = reader.result.toString();
+    }
+  }
   onSubmit() {
-    this.registrationService.registr(this.registrationForm.value)
+    this.user.UserName = this.userName.value;
+    this.user.Password = this.password.value;
+    this.user.Email = this.email.value;
+    console.log(this.user);
+    this.registrationService.registr(this.user)
       .subscribe(response => console.log('Success', response),
         error => console.log('error', error));
   }
