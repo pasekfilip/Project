@@ -20,6 +20,11 @@ namespace WebAPI.Models
             return this.context.Chat_Members.Where(x => x.ID_User == id).FirstOrDefault();
 
         }
+        //public int[] GetChatIDByIDFriendAndIDUser(List<Friends> friends)
+        //{
+
+        //    this.context.Chat_Members.Where(x => friends.)
+        //}
         public int ReturnChatID(int[] Ids)
         {
             int indexA = Ids[0];

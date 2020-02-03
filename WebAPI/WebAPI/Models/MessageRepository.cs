@@ -20,6 +20,11 @@ namespace WebAPI.Models
             //return this.context.Chat.Where(x => x.Id == id).FirstOrDefault();
             return this.context.Messages.Find(id);
         }
+        //public List<Message> FindLastMessagesByFriendID()
+        //{
+          
+
+        //}
         public List<Message> FindByChatID(int chatId)
         {
             return this.context.Messages.Where(x => x.ID_Chat == chatId).ToList();

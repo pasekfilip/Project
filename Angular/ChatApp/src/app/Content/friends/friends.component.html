@@ -11,9 +11,13 @@
         {{user.UserName}}
     </div>
     <div class="created-date">
-        8.1
+        {{lastMessage?.Send_Time}}
     </div>
-    <div>
-        <img (click)="deleteFriend(user.ID)" class="delete"src="../../../assets/pictures/trash-icon.png" alt="Delete Conversation" width="100%">
+    
+    <div class="delete-mess">
+        <button><img (click)="deleteFriend(user.ID)" src="../../../assets//pictures/trash-1638702-1388095.png" alt="Delete Conversation" width="100%"></button>
+    </div>
+    <div class="conversation-message">
+        {{lastMessage?.TheMessage}}
     </div>
 </div>

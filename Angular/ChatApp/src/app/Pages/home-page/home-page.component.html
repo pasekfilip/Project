@@ -5,7 +5,7 @@
     </div>
 
     <div id="conversation-list">
-        <app-friends [users]="users" [ID_User]="ID_User" (idChat)="receiveChatID($event)"></app-friends>
+        <app-friends [users]="users" [lastMessage]="lastMessage"[ID_User]="ID_User" (idChat)="receiveChatID($event)"></app-friends>
     </div>
     <div id="new-message-container">
         <a (click)="openDialog()">+</a>
@@ -22,9 +22,14 @@
 
     <form [formGroup]="messageForm" (ngSubmit)="onSend()" id="chat-form">
 
-        <button type="button"><img src="../../../assets/pictures/blue-paper-clip.png" alt="Add Attachment" width="100%"></button>
+        <button type="submit"> <img src="../../../assets/pictures/blue-paper-clip.png" alt="Add Attachment" width="100%"></button>
+        <!-- <button type="button">
+       
+        <input class="ng-hide" (change)="handleUpload($event)" accept="image/jpeg,image/png,application/pdf" formControlName="file" multiple type="file" />
+        </button> -->
         <input type="text" name="message" formControlName="message" placeholder="type a message">
         <button type="submit"><img src="../../../assets/pictures/computer-icons-download-symbol-send-email-button.jpg" alt="Send msg" width="100%"></button>
+
         
     </form>
 
