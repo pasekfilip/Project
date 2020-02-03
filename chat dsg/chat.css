@@ -229,7 +229,11 @@ html{
     padding-right: 22px;
 }
 
-#chat-form input{
+#chat-file-picture{
+
+}
+
+#chat-file{
     outline: none;
     padding: 15px;
     border: 2px solid #ddd;
@@ -240,4 +244,29 @@ html{
 
 ::-webkit-scrollbar{
     display: none;
+}
+
+#file-button {
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    position:relative;
+    background-image: url("pictures/blue-paper-clip.png");
+    background-color: #cccccc;
+}
+
+label span input {
+    z-index: 999;
+    line-height: 0;
+    font-size: 30px;
+    position: absolute;
+    top: -2px;
+    left: -700px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    _cursor: hand;
+    margin: 0;
+    padding:0;
 }
