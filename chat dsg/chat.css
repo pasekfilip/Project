@@ -67,13 +67,14 @@ html{
 
 .conversation{
     display: grid;
-    grid-template-columns: 40px 1fr max-content;
+    grid-template-columns: 40px 1fr max-content 30px;
     grid-gap: 10px;
     color: #ddd;
     font-size: 1.3rem;
     border-bottom: 1px solid #002C88;
     padding: 20px 20px 20px 15px;
 }
+
 
 .conversation.active,
 .conversation:hover{
@@ -83,6 +84,13 @@ html{
 .conversation:hover{
     cursor: pointer;
 }
+.delete-mess{
+    grid-row: span 2;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+
+}
 
 .conversation > img{
     grid-row: span 2;
@@ -90,6 +98,7 @@ html{
     width: 40px;
     border-radius: 100%;
 }
+
 
 .title-text{
     font-weight: bold;
@@ -106,12 +115,12 @@ html{
 }
 
 .conversation-message{
-    grid-column: span 2;
-    padding-left: 5px;
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-}
+     grid-column: span 2;
+     padding-left: 5px;
+     white-space: nowrap;
+     overflow-x: hidden;
+     text-overflow: ellipsis;
+ }
 
 
 #new-message-container{
@@ -140,7 +149,7 @@ html{
 }
 #chat-title{
     display: grid;
-    grid: 36px/ 1fr 36px;
+    grid-template-columns: 5% 95%;
     align-content: center;
     align-items: center;
     grid-area: chat-title;
@@ -152,6 +161,9 @@ html{
     padding: 0 20px;
 }
 
+#chat-title > span{
+    text-align: right;
+}
 #chat-title > img{
     cursor: pointer;
 }
@@ -159,7 +171,7 @@ html{
 #chat-message-list{
     grid-area: chat-message-list;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 0 20px;
     overflow-y: scroll;
 }
@@ -217,7 +229,11 @@ html{
     padding-right: 22px;
 }
 
-#chat-form input{
+#chat-file-picture{
+
+}
+
+#chat-file{
     outline: none;
     padding: 15px;
     border: 2px solid #ddd;
@@ -228,4 +244,29 @@ html{
 
 ::-webkit-scrollbar{
     display: none;
+}
+
+#file-button {
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    position:relative;
+    background-image: url("pictures/blue-paper-clip.png");
+    background-color: #cccccc;
+}
+
+label span input {
+    z-index: 999;
+    line-height: 0;
+    font-size: 30px;
+    position: absolute;
+    top: -2px;
+    left: -700px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    _cursor: hand;
+    margin: 0;
+    padding:0;
 }

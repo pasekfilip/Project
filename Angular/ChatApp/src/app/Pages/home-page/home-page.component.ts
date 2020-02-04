@@ -12,13 +12,15 @@ import { MessageService } from 'src/app/Services/message.service';
 import { UserService } from 'src/app/Services/user.service';
 import { MatDialog , MatDialogConfig} from '@angular/material'
 import { FriendDialogComponent } from 'src/app/friend-dialog/friend-dialog.component';
+import { OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit,OnDestroy {
   messageForm: FormGroup;
   modelUserName: string;
   ID_User: number;
@@ -26,6 +28,8 @@ export class HomePageComponent implements OnInit {
   messages: message[];
   users: User[];
   ID_Chat: number = 1;
+  lastMessage : message;
+  private subscription : Subscription;
 
   constructor(private router: ActivatedRoute, private userService: UserService, private fb: FormBuilder,
     private messageService: MessageService, private Cookie: CookieService, private friendService: FriendService,public dialog:MatDialog) {
@@ -33,8 +37,9 @@ export class HomePageComponent implements OnInit {
     const token = this.Cookie.get('token');
     const decodedToken = jwt_decode(token);
     this.modelUserName = decodedToken['name'];
-    this.messageService.getAllTheMessages(this.ID_Chat).subscribe(data => this.messages = data);
-    this.userService.getUserByUserName(this.modelUserName).pipe(
+    this.subscription = this.messageService.getAllTheMessages(this.ID_Chat).subscribe(data => {this.messages = data;this.lastMessage = data[0]});
+    
+    this.subscription = this.userService.getUserByUserName(this.modelUserName).pipe(
       map(data => {
         this.ID_User = data.ID
       })).subscribe(data => {
@@ -48,10 +53,15 @@ export class HomePageComponent implements OnInit {
     this.createForm();
     this.refresh();
   }
+  ngOnDestroy()
+  {
+    this.subscription.unsubscribe();
+  }
   createForm() {
     this.messageForm = this.fb.group(
       {
-        message: ['']
+        message: [''],
+        file: ['']
       }
     )
   }
@@ -64,7 +74,7 @@ export class HomePageComponent implements OnInit {
     this.sendMessage.Send_Time = currentDate.toISOString().slice(0, 19).replace("T", " ");
     this.sendMessage.Del_Msg_Time = currentDate.toISOString().slice(0, 19).replace("T", " ");
 
-    this.messageService.sendMessageToDb(this.sendMessage)
+    this.subscription = this.messageService.sendMessageToDb(this.sendMessage)
       .subscribe(() => { this.refresh() },
         error => console.log('error', error));
     this.messageForm.reset();
@@ -72,14 +82,14 @@ export class HomePageComponent implements OnInit {
   }
   refresh() {
     const source = interval(5000);
-    source.pipe(
+    this.subscription = source.pipe(
       map(data => {
         this.messageService.getAllTheMessages(this.ID_Chat).subscribe(data => this.messages = data);
       })
     ).subscribe();
   }
   getFriends() {
-    this.friendService.getAllTheFriendsByID_User(this.ID_User).
+    this.subscription = this.friendService.getAllTheFriendsByID_User(this.ID_User).
     pipe(map(data => data.map(f => f.ID_Friend))).subscribe(data => this.userService.getUsersByIDs(data).pipe(
       tap(data => console.log(data))
     ).subscribe(_users => this.users = _users));

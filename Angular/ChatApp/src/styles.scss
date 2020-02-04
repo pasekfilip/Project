@@ -1,4 +1,5 @@
 
+
 html{
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #57c1eb 0%, #246fa8 100%);
@@ -51,7 +52,7 @@ html{
     padding-left: 48px;
     padding-right: 20px;
     font-size: 1.4rem;
-    background: rgba(255, 255, 255, 0.3) url('./assets/pictures/search-icon-2-614x460.png') no-repeat 15px center;
+    background: rgba(255, 255, 255, 0.3) url("./assets/pictures/search-icon-2-614x460.png") no-repeat 15px center;
     background-size: 20px 20px;
 }
 
@@ -67,7 +68,7 @@ html{
 
 .conversation{
     display: grid;
-    grid-template-columns: 40px 1fr max-content;
+    grid-template-columns: 40px 1fr max-content 30px;
     grid-gap: 10px;
     color: #ddd;
     font-size: 1.3rem;
@@ -75,13 +76,23 @@ html{
     padding: 20px 20px 20px 15px;
 }
 
+
 .conversation.active,
 .conversation:hover{
     background: #002C88;
 }
 
-.conversation:hover{
 
+.delete-mess{
+    grid-row: span 2;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    cursor: pointer;
+    >button
+    {
+        cursor: pointer;
+    }
 }
 
 .conversation > img{
@@ -91,6 +102,7 @@ html{
     border-radius: 100%;
     cursor: pointer;
 }
+
 
 .title-text{
     font-weight: bold;
@@ -107,13 +119,12 @@ html{
 }
 
 .conversation-message{
-    grid-column: span 2;
-    padding-left: 5px;
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
-}
+     grid-column: span 2;
+     padding-left: 5px;
+     white-space: nowrap;
+     overflow-x: hidden;
+     text-overflow: ellipsis;
+ }
 
 
 #new-message-container{
@@ -143,7 +154,7 @@ html{
 }
 #chat-title{
     display: grid;
-    grid: 36px/ 1fr 36px;
+    grid-template-columns: 5% 95%;
     align-content: center;
     align-items: center;
     grid-area: chat-title;
@@ -155,6 +166,9 @@ html{
     padding: 0 20px;
 }
 
+#chat-title > span{
+    text-align: right;
+}
 #chat-title > img{
     cursor: pointer;
 }
@@ -162,7 +176,7 @@ html{
 #chat-message-list{
     grid-area: chat-message-list;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 0 20px;
     overflow-y: scroll;
 }

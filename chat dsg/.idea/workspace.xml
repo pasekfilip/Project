@@ -34,7 +34,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1WLhy7MvaDDLqutcVoKhZEPRbzq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -45,6 +49,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tomyv\OneDrive\Dokumenty\GitHub\Project\chat dsg\pictures" />
+    </key>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -70,6 +79,9 @@
       <updated>1578935035719</updated>
       <workItem from="1578935044772" duration="3717000" />
       <workItem from="1578944899539" duration="867000" />
+      <workItem from="1580425795159" duration="1553000" />
+      <workItem from="1580661234685" duration="3020000" />
+      <workItem from="1580759044425" duration="2772000" />
     </task>
     <servers />
   </component>
@@ -77,14 +89,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580426558422">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580426558422" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1578935610638">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="254" height="195" key="DatabaseViewActions_Filter/0.0.1536.824@0.0.1536.824" timestamp="1578935610638" />
-    <state x="827" y="228" key="com.intellij.ide.util.TipDialog" timestamp="1578944900875">
+    <state x="827" y="228" key="com.intellij.ide.util.TipDialog" timestamp="1580759044515">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="827" y="228" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578944900875" />
+    <state x="827" y="228" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1580759044515" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1580761280103">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1580761280103" />
     <state x="847" y="145" key="search.everywhere.popup" timestamp="1578936266474">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

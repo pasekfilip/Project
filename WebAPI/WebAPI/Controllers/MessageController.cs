@@ -29,6 +29,12 @@ namespace WebAPI.Controllers
         {
             return this.repository.FindByChatID(id);
         }
+        //[Route("api/Message/Last")]
+        //[HttpPost]
+        //public Message GetLastMessage(int[] ids)
+        //{
+        //    return this.repository.FindLastMessageByFriendID(ids);
+        //}
 
         [Route("api/Message")]
         [HttpPost]
